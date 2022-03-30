@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
-from server.routes.products import products as productRoute
-from server.routes.users import users as usersRoute
+from app.server.routes.products import products as productRoute
+from app.server.routes.users import users as usersRoute
+
 
 app = FastAPI()
 
-app.include_router(productRoute, tags=["Products"])
-app.include_router(usersRoute, tags=["Users"])
+app.include_router(productRoute)
+app.include_router(usersRoute)
 
 
 @app.get("/")
