@@ -1,11 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
 from app.database import (
     add_product,
     delete_product,
     retrieve_products,
-    retrieve_products,
+    retrieve_product,
     update_product,
 )
 from app.server.models.ProductModel import (
@@ -15,34 +15,11 @@ from app.server.models.ProductModel import (
     UpdateProductModel,
 )
 
-products = APIRouter()
+productRouter = APIRouter()
 
 
-@products.get("/product")
-def read_all_products(product_id: int):
-    return {"product_id": product_id}
-
-
-@products.get("/product/{product_id}")
-def read_product(product_id: int):
-    return {"product_id": product_id}
-
-
-@products.post("/product/")
-async def create_product(product_id: int):
-    return {"product_id": product_id}
-
-
-@products.put("/product/{product_id}")
-async def update_product(product_id: int):
-    return {"product_id": product_id}
-
-
-@products.patch("/product/{product_id}")
-async def patch_product(product_id: int):
-    return {"product_id": product_id}
-
-
-@products.delete("/product/{product_id}")
-async def delete_product(product_id: int):
-    return {"product_id": product_id}
+@productRouter.post("/product", response_description="Product data added into the database")
+async def add_product_data(product: ProductSchema = Body(...)):
+    product = jsonable_encoder(product)
+    new_product = await add_product(product)
+    return ResponseModel(new_product, "Product added successfully.")

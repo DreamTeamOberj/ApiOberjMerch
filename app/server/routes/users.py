@@ -1,11 +1,11 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
-from app.server.database import (
+from app.database import (
     add_user,
     delete_user,
     retrieve_users,
-    retrieve_users,
+    retrieve_user,
     update_user,
 )
 from app.server.models.UserModel import (
@@ -15,35 +15,11 @@ from app.server.models.UserModel import (
     UpdateUserModel,
 )
 
-
-users = APIRouter()
-
-
-@users.get("/users")
-async def read_all_users(users_id: int):
-    return {"users_id": users_id}
+userRouter = APIRouter()
 
 
-@users.get("/users/{users_id}")
-async def read_users(users_id: int):
-    return {"users_id": users_id}
-
-
-@users.post("/users/")
-async def create_user(users_id: int):
-    return {"users_id": users_id}
-
-
-@users.put("/users/{users_id}")
-async def update_users(users_id: int):
-    return {"users_id": users_id}
-
-
-@users.patch("/users/{users_id}")
-async def patch_users(users_id: int):
-    return {"users_id": users_id}
-
-
-@users.delete("/users/{users_id}")
-async def delete_users(users_id: int):
-    return {"users_id": users_id}
+@userRouter.post("/user", response_description="User data added into the database")
+async def add_user_data(user: UserSchema = Body(...)):
+    user = jsonable_encoder(user)
+    new_user = await add_user(user)
+    return ResponseModel(new_user, "User added successfully.")

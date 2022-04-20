@@ -1,5 +1,5 @@
 from bson.objectid import ObjectId
-import motor
+import motor.motor_asyncio
 
 MONGO_URL = "mongodb+srv://groupe6:groupe6@bddoberjmerch.t2yjt.mongodb.net/oberjMerch?retryWrites=true&w=majority"
 
@@ -7,6 +7,7 @@ client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
 db = client.oberj
 
 oberj_collection = db.get_collection("oberjMerch")
+
 
 # Helper
 def product_helper(product) -> dict:
@@ -19,6 +20,7 @@ def product_helper(product) -> dict:
         "is_offer": product["is_offer"],
     }
 
+
 def user_helper(user) -> dict:
     return {
         "id": str(user["_id"]),
@@ -28,9 +30,10 @@ def user_helper(user) -> dict:
         "password": user["password"],
     }
 
-#Operations
-#User
-async def retrieve_user():
+
+# Operations
+# User
+async def retrieve_users():
     user = []
     async for user in oberj_collection.find():
         user.append(user_helper(user))
@@ -39,7 +42,7 @@ async def retrieve_user():
 
 # Add a new user into to the database
 async def add_user(user_data: dict) -> dict:
-    user = await oberj_collection.insert_one(user)
+    user = await oberj_collection.insert_one(user_data)
     new_user = await oberj_collection.find_one({"_id": user.inserted_id})
     return user_helper(new_user)
 
@@ -73,8 +76,9 @@ async def delete_user(id: str):
         await oberj_collection.delete_one({"_id": ObjectId(id)})
         return True
 
-#Product
-async def retrieve_product():
+
+# Product
+async def retrieve_products():
     product = []
     async for product in oberj_collection.find():
         product.append(user_helper(product))
@@ -83,7 +87,7 @@ async def retrieve_product():
 
 # Add a new product into to the database
 async def add_product(product_data: dict) -> dict:
-    product = await oberj_collection.insert_one(product)
+    product = await oberj_collection.insert_one(product_data)
     new_product = await oberj_collection.find_one({"_id": product.inserted_id})
     return user_helper(new_product)
 
