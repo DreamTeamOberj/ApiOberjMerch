@@ -1,7 +1,15 @@
+import motor
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
-from server.routes.products import products as productRoute
-from server.routes.users import users as usersRoute
+from routes.products import products as productRoute
+from routes.users import users as usersRoute
+
+MONGO_URL = "mongodb+srv://groupe6:groupe6@bddoberjmerch.t2yjt.mongodb.net/oberjMerch?retryWrites=true&w=majority"
+
+client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
+db = client.oberj
+
+student_collection = db.get_collection("oberjMerch")
 
 
 app = FastAPI()
