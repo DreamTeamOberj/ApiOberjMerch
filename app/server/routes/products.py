@@ -1,6 +1,20 @@
 from fastapi import APIRouter
 from fastapi.encoders import jsonable_encoder
 
+from app.server.database import (
+    add_product,
+    delete_product,
+    retrieve_products,
+    retrieve_products,
+    update_product,
+)
+from app.server.models.ProductModel import (
+    ErrorResponseModel,
+    ResponseModel,
+    ProductSchema,
+    UpdateProductModel,
+)
+
 products = APIRouter()
 
 
