@@ -4,6 +4,7 @@ from starlette.responses import RedirectResponse
 from routes.products import products as productRoute
 from routes.users import users as usersRoute
 
+
 MONGO_URL = "mongodb+srv://groupe6:groupe6@bddoberjmerch.t2yjt.mongodb.net/oberjMerch?retryWrites=true&w=majority"
 
 client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
