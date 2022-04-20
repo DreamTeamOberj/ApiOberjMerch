@@ -26,7 +26,7 @@ async def add_user_data(user: UserSchema = Body(...)):
 
 
 @userRouter.get("/users", response_description="Products retrieved")
-async def get_students():
+async def get_users():
     users = await retrieve_users()
     if users:
         return ResponseModel(users, "Users data retrieved successfully")

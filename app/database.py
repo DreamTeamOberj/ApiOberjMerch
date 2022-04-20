@@ -1,9 +1,9 @@
 from bson.objectid import ObjectId
-import motor.motor_asyncio
+from motor import motor_asyncio
 
 MONGO_URL = "mongodb+srv://groupe6:groupe6@bddoberjmerch.t2yjt.mongodb.net/oberjMerch?retryWrites=true&w=majority"
 
-client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
+client = motor_asyncio.AsyncIOMotorClient(MONGO_URL)
 db = client.oberj
 
 oberj_collection = db.get_collection("oberjMerch")

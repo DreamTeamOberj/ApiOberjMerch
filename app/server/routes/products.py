@@ -26,14 +26,14 @@ async def add_product_data(product: ProductSchema = Body(...)):
 
 
 @productRouter.get("/products", response_description="Products retrieved")
-async def get_students():
+async def get_products():
     products = await retrieve_products()
     if products:
         return ResponseModel(products, "Products data retrieved successfully")
     return ResponseModel(products, "Empty list returned")
 
 
-@productRouter.get("/product/{id}", response_description="Student data retrieved")
+@productRouter.get("/product/{id}", response_description="Product data retrieved")
 async def get_product_data(id):
     product = await retrieve_product(id)
     if product:
