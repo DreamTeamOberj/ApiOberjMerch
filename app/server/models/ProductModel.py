@@ -1,11 +1,8 @@
-import uuid
-
 from pydantic import BaseModel
 from typing import Optional
 
 
 class ProductSchema(BaseModel):
-    id: uuid.uuid4().int
     name: str
     price: float
     description: str
@@ -17,7 +14,6 @@ class ProductSchema(BaseModel):
         arbitrary_types_allowed = True
         schema_extra = {
             "example": {
-                "id": "0001",
                 "name": "T-shirt bg",
                 "price": 101,
                 "description": "tshirt de bonne qualité",
@@ -37,7 +33,6 @@ class UpdateProductModel(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "id": "0001",
                 "name": "T-shirt bg",
                 "price": 101,
                 "description": "tshirt de bonen qualité",
