@@ -80,7 +80,7 @@ async def delete_user(id: str):
 async def retrieve_products():
     products = []
     async for product in oberj_collection.find():
-        products.append(user_helper(product))
+        products.append(product_helper(product))
     return products
 
 
