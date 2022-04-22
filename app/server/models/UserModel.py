@@ -23,7 +23,7 @@ class UserSchema(BaseModel):
 
 class UpdateUserModel(BaseModel):
     name: Optional[str]
-    first_name: Optional[float]
+    first_name: Optional[str]
     email: Optional[str]
     password: Optional[str]
 
