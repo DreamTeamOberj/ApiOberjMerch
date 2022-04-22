@@ -33,7 +33,7 @@ class UpdateProductModel(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "name": "T-shirt bg",
+                "name": "T-shirt bgggg",
                 "price": 101,
                 "description": "tshirt de bonen qualité",
                 "img": "img001",
