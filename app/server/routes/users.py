@@ -1,14 +1,14 @@
 from fastapi import APIRouter, Body
 from fastapi.encoders import jsonable_encoder
 
-from app.database import (
+from database import (
     add_user,
     delete_user,
     retrieve_users,
     retrieve_user,
     update_user,
 )
-from app.server.models.UserModel import (
+from server.models.UserModel import (
     ErrorResponseModel,
     ResponseModel,
     UserSchema,
