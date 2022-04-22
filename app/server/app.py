@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
-from app.server.routes.products import productRouter
-from app.server.routes.users import userRouter
+from server.routes.products import productRouter
+from server.routes.users import userRouter
 
 app = FastAPI()
 

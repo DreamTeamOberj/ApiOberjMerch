@@ -88,14 +88,14 @@ async def retrieve_products():
 async def add_product(product_data: dict) -> dict:
     product = await oberj_collection.insert_one(product_data)
     new_product = await oberj_collection.find_one({"_id": product.inserted_id})
-    return user_helper(new_product)
+    return product_helper(new_product)
 
 
 # Retrieve a product with a matching ID
 async def retrieve_product(id: str) -> dict:
     product = await oberj_collection.find_one({"_id": ObjectId(id)})
     if product:
-        return user_helper(product)
+        return product_helper(product)
 
 
 # Update a product with a matching ID
