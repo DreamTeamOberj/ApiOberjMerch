@@ -1,11 +1,10 @@
 from bson.objectid import ObjectId
-from motor import motor_asyncio
+import motor.motor_asyncio
 
 MONGO_URL = "mongodb+srv://groupe6:groupe6@bddoberjmerch.t2yjt.mongodb.net/oberjMerch?retryWrites=true&w=majority"
 
-client = motor_asyncio.AsyncIOMotorClient(MONGO_URL)
-db = client.oberj
-
+client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URL)
+db = client.oberjMerch
 oberj_collection = db.get_collection("oberjMerch")
 
 
@@ -34,10 +33,10 @@ def user_helper(user) -> dict:
 # Operations
 # User
 async def retrieve_users():
-    user = []
+    users = []
     async for user in oberj_collection.find():
-        user.append(user_helper(user))
-    return user
+        users.append(user_helper(user))
+    return users
 
 
 # Add a new user into to the database
@@ -79,10 +78,10 @@ async def delete_user(id: str):
 
 # Product
 async def retrieve_products():
-    product = []
+    products = []
     async for product in oberj_collection.find():
-        product.append(user_helper(product))
-    return product
+        products.append(user_helper(product))
+    return products
 
 
 # Add a new product into to the database
