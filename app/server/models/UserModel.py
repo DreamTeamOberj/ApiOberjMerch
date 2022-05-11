@@ -3,10 +3,10 @@ from typing import Optional
 
 
 class UserSchema(BaseModel):
-    name: str
-    first_name: str
-    email: EmailStr
-    password: str
+    name: Optional[str]
+    first_name: Optional[str]
+    email: Optional[str]
+    password: Optional[str]
 
     class Config:
         allow_population_by_field_name = True

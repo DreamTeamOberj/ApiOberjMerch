@@ -3,11 +3,11 @@ from typing import Optional
 
 
 class ProductSchema(BaseModel):
-    name: str
-    price: float
-    description: str
-    img: str
-    is_offer: bool
+    name: Optional[str]
+    price: Optional[float]
+    description: Optional[str]
+    img: Optional[str]
+    is_offer: Optional[bool]
 
     class Config:
         allow_population_by_field_name = True
