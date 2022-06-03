@@ -7,7 +7,7 @@ services:
   api:
     build: .
     restart: always
-    command: uvicorn server.app:oberjApi
+    command: uvicorn server.app:app
     networks:
       - default
     volumes:
