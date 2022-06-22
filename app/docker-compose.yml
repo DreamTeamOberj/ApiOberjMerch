@@ -1,0 +1,16 @@
+version: '3.9'
+
+networks:
+  default: {}
+
+services:
+  api:
+    build: .
+    restart: always
+    command: uvicorn server.app:app
+    networks:
+      - default
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
