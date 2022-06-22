@@ -15,7 +15,6 @@ def product_helper(product) -> dict:
         "name": product["name"],
         "price": product["price"],
         "description": product["description"],
-        "img": product["img"],
         "is_offer": product["is_offer"],
     }
 

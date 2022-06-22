@@ -6,7 +6,6 @@ class ProductSchema(BaseModel):
     name: Optional[str]
     price: Optional[float]
     description: Optional[str]
-    img: Optional[str]
     is_offer: Optional[bool]
 
     class Config:
@@ -17,7 +16,6 @@ class ProductSchema(BaseModel):
                 "name": "T-shirt bg",
                 "price": 101,
                 "description": "tshirt de bonne qualité",
-                "img": "img001",
                 "is_offer": False,
             }
         }
@@ -27,7 +25,6 @@ class UpdateProductModel(BaseModel):
     name: Optional[str]
     price: Optional[float]
     description: Optional[str]
-    img: Optional[str]
     is_offer: Optional[bool]
 
     class Config:
@@ -36,7 +33,6 @@ class UpdateProductModel(BaseModel):
                 "name": "T-shirt bgggg",
                 "price": 101,
                 "description": "tshirt de bonen qualité",
-                "img": "img001",
                 "is_offer": False,
             }
         }
@@ -44,7 +40,7 @@ class UpdateProductModel(BaseModel):
 
 def ResponseModel(data, message):
     return {
-        "data": [data],
+        "data": data,
         "code": 200,
         "message": message,
     }
