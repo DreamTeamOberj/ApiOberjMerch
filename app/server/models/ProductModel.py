@@ -1,6 +1,16 @@
 from pydantic import BaseModel
 from typing import Optional
 
+### GRAPHQL DEPEDENCIES ###
+
+import strawberry
+
+from fastapi import FastAPI, BackgroundTasks
+from strawberry.types import Info
+from strawberry.fastapi import GraphQLRouter
+
+#########
+
 
 class ProductSchema(BaseModel):
     name: Optional[str]
@@ -48,3 +58,10 @@ def ResponseModel(data, message):
 
 def ErrorResponseModel(error, code, message):
     return {"error": error, "code": code, "message": message}
+
+
+
+
+
+
+    
