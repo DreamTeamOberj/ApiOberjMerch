@@ -29,14 +29,14 @@ class Query:
 @strawberry.type
 class Mutation:
     @strawberry.mutation
-    async def add_product(self, name: str, price: float, description: str, is_offer: bool) -> Product:
+    async def add_product(self, name: str, price: float, description: str, is_offer: bool) -> str:
             await add_product({'name': name, 'price': price, 'description': description, 'is_offer': is_offer})
-            return Product(id=NULL, name=name, price=price, description=description, is_offer=is_offer)
+            return("Added product " + name)
         
     @strawberry.mutation
-    async def update_product(self, id: str, name: str, price: float, description: str, is_offer: bool) -> Product:
+    async def update_product(self, id: str, name: str, price: float, description: str, is_offer: bool) -> str:
             await update_product(id, {'name': name, 'price': price, 'description': description, 'is_offer': is_offer})
-            return Product(id=id, name=name, price=price, description=description, is_offer=is_offer)
+            return("Updated product with id " + id)
         
     @strawberry.mutation
     async def delete_product(self, id: str) -> str:
