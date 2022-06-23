@@ -1,8 +1,19 @@
-from fastapi import FastAPI
 from starlette.responses import RedirectResponse
+
 from server.routes.products import productRouter
 from server.routes.users import userRouter
 from fastapi.middleware.cors import CORSMiddleware
+
+### GRAPHQL DEPEDENCIES ###
+
+import strawberry
+
+from server.models.schema import Query
+from server.models.schema import Mutation
+from fastapi import FastAPI
+from strawberry.fastapi import GraphQLRouter
+
+#########
 
 app = FastAPI()
 
@@ -28,3 +39,12 @@ app.include_router(userRouter,tags=["User routes"])
 async def read_root():
     response = RedirectResponse(url='/docs')
     return response
+
+
+# GRAPHQL
+
+product_schema = strawberry.Schema(query=Query, mutation=Mutation)
+
+graphql_app = GraphQLRouter(product_schema)
+
+app.include_router(graphql_app, prefix="/graphql")
