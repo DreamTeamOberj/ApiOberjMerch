@@ -18,7 +18,7 @@ from server.models.UserModel import (
 userRouter = APIRouter()
 
 
-@userRouter.post("/user", response_description="User data added into the database")
+@userRouter.post("/users", response_description="User data added into the database")
 async def add_user_data(user: UserSchema = Body(...)):
     user = jsonable_encoder(user)
     new_user = await add_user(user)
@@ -33,7 +33,7 @@ async def get_users():
     return ResponseModel(users, "Empty list returned")
 
 
-@userRouter.get("/user/{id}", response_description="User data retrieved")
+@userRouter.get("/users/{id}", response_description="User data retrieved")
 async def get_user_data(id):
     user = await retrieve_user(id)
     if user:
@@ -41,7 +41,7 @@ async def get_user_data(id):
     return ErrorResponseModel("An error occurred.", 404, "User doesn't exist.")
 
 
-@userRouter.put("/user/{id}")
+@userRouter.put("/users/{id}")
 async def update_user_data(id: str, req: UpdateUserModel = Body(...)):
     req = {k: v for k, v in req.dict().items() if v is not None}
     updated_user = await update_user(id, req)
@@ -57,7 +57,7 @@ async def update_user_data(id: str, req: UpdateUserModel = Body(...)):
     )
 
 
-@userRouter.delete("/user/{id}", response_description="User data deleted from the database")
+@userRouter.delete("/users/{id}", response_description="User data deleted from the database")
 async def delete_product_data(id: str):
     deleted_user = await delete_user(id)
     if deleted_user:
