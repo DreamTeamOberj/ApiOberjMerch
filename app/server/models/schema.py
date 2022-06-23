@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 import strawberry
 from typing import Optional
 from database import delete_product
