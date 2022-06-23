@@ -9,8 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 import strawberry
 
 from server.models.schema import Query
-from fastapi import FastAPI, BackgroundTasks
-from strawberry.types import Info
+from server.models.schema import Mutation
+from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 
 #########
@@ -46,7 +46,7 @@ async def read_root():
 
 # GRAPHQL
 
-product_schema = strawberry.Schema(query=Query)
+product_schema = strawberry.Schema(query=Query, mutation=Mutation)
 
 graphql_app = GraphQLRouter(product_schema)
 
